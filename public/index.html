@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>学习养成计划系统</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section id="loginPage" class="login-page">
+    <div class="login-card">
+      <div class="logo">学</div>
+      <h1>学习养成计划系统</h1>
+      <p>当前版本已接入 Node.js 后端，任务数据会保存到后端 JSON 文件中。</p>
+      <div class="login-form">
+        <label for="usernameInput">用户名</label>
+        <input id="usernameInput" type="text" placeholder="例如：张三" />
+        <button id="loginBtn">进入系统</button>
+      </div>
+      <p class="tip">提示：不同用户名对应不同任务数据。</p>
+    </div>
+  </section>
+
+  <section id="appPage" class="app-page hidden">
+    <header class="header">
+      <div>
+        <h1>学习养成计划系统</h1>
+        <p>前端页面 + Node.js 后端 + JSON 文件数据存储</p>
+      </div>
+      <div class="user-panel">
+        <span>当前用户：<strong id="currentUserText">游客用户</strong></span>
+        <button id="logoutBtn" class="ghost-btn">退出登录</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="dashboard">
+        <div class="stat-card"><span>总任务数</span><strong id="totalCount">0</strong></div>
+        <div class="stat-card"><span>已完成</span><strong id="finishedCount">0</strong></div>
+        <div class="stat-card"><span>今日新增</span><strong id="todayAddCount">0</strong></div>
+        <div class="stat-card"><span>完成率</span><strong id="finishRate">0%</strong></div>
+      </section>
+
+      <section class="card">
+        <div class="card-title">
+          <div><h2>添加学习任务</h2><p>设置主题、完成时间、优先级和复习提醒</p></div>
+          <span class="badge">Task Form</span>
+        </div>
+        <div class="form-grid">
+          <div class="form-item"><label for="taskTitle">任务名称</label><input id="taskTitle" type="text" placeholder="例如：背20个英语单词" /></div>
+          <div class="form-item"><label for="taskTopic">学习主题</label><input id="taskTopic" type="text" placeholder="例如：英语 / 数学 / 阅读" /></div>
+          <div class="form-item"><label for="taskDeadline">完成时间</label><input id="taskDeadline" type="datetime-local" /></div>
+          <div class="form-item">
+            <label for="taskPriority">优先级</label>
+            <select id="taskPriority">
+              <option value="high">高优先级</option>
+              <option value="medium">中优先级</option>
+              <option value="low">低优先级</option>
+            </select>
+          </div>
+          <label class="check-row"><input id="needReview" type="checkbox" /><span>需要复习提醒</span></label>
+          <button id="addTaskBtn" class="primary-btn">添加任务</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-title">
+          <div><h2>系统推荐任务</h2><p>点击推荐项可快速添加学习任务</p></div>
+          <span class="badge">Recommended</span>
+        </div>
+        <div class="recommend-list">
+          <button class="recommend-btn" data-title="背20个英语单词" data-topic="英语">背20个英语单词</button>
+          <button class="recommend-btn" data-title="刷5道数学题" data-topic="数学">刷5道数学题</button>
+          <button class="recommend-btn" data-title="阅读30分钟" data-topic="阅读">阅读30分钟</button>
+          <button class="recommend-btn" data-title="复习课堂笔记" data-topic="复习">复习课堂笔记</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-title">
+          <div><h2>任务列表</h2><p>管理未完成任务和已完成任务</p></div>
+          <span class="badge">Task List</span>
+        </div>
+        <div id="taskList" class="task-list"></div>
+      </section>
+
+      <section class="card">
+        <div class="card-title">
+          <div><h2>学习进度</h2><p>根据任务完成情况自动计算</p></div>
+          <span class="badge">Progress</span>
+        </div>
+        <div class="progress-box"><div id="progressBar" class="progress-bar"></div></div>
+        <p id="progressText" class="progress-text">当前完成率：0%</p>
+      </section>
+
+      <section class="card">
+        <div class="card-title">
+          <div><h2>任务分析</h2><p>展示每日任务添加数和完成率</p></div>
+          <span class="badge">Analysis</span>
+        </div>
+        <table>
+          <tr><th>统计项</th><th>数据</th></tr>
+          <tr><td>今日添加任务数</td><td id="tableTodayAdd">0</td></tr>
+          <tr><td>今日完成任务数</td><td id="tableTodayFinished">0</td></tr>
+          <tr><td>总任务数</td><td id="tableTotal">0</td></tr>
+          <tr><td>总完成率</td><td id="tableFinishRate">0%</td></tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <div class="card-title">
+          <div><h2>打卡日历</h2><p>显示最近 7 天的任务完成记录</p></div>
+          <span class="badge">Calendar</span>
+        </div>
+        <div id="checkinCalendar" class="calendar"></div>
+      </section>
+    </main>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

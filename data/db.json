@@ -1,0 +1,22 @@
+{
+  "users": {
+    "张三": {
+      "username": "张三",
+      "createdAt": "2026-07-07T00:51:00.083Z",
+      "tasks": [
+        {
+          "id": 1783591820923,
+          "title": "学习Java",
+          "topic": "编程",
+          "deadline": "2026-07-09T18:10",
+          "priority": "high",
+          "needReview": false,
+          "completed": true,
+          "createdAt": "2026-07-09",
+          "completedAt": "2026-07-09",
+          "reminded": false
+        }
+      ]
+    }
+  }
+}
